@@ -1,4 +1,4 @@
-const io = require('socket.io')(3000, {
+const io = require('socket.io')(8080, {
     serveClient: false,
     pingInterval: 10000,
     pingTimeout: 5000,
