@@ -1,0 +1,22 @@
+{
+  "name": "ed-helper-server",
+  "description": "Elite Dangerous Mission Helper",
+  "author": "Lobod",
+  "version": "1.1.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "socket.io": "^2.1.1"
+  },
+  "build": {
+    "appId": "dev.Lobod.id",
+    "mac": {
+      "category": "gameTool"
+    },
+    "win": {
+      "target": "portable"
+    }
+  }
+}
