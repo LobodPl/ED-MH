@@ -1,9 +1,4 @@
-const io = require('socket.io')(8080, {
-    serveClient: false,
-    pingInterval: 10000,
-    pingTimeout: 5000,
-    cookie: false
-  });
+const io = require('socket.io')(8080);
   var userConnected = [];
 io.on("connect", (socket)=>{
     var user = "";
