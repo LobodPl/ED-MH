@@ -8,6 +8,7 @@ const io = require('socket.io')(8080, {
 io.on("connect", (socket)=>{
     var user = "";
     console.log("Client connected");
+    socket.emit("Auth","");
     socket.on("Auth-r",(data,err)=>{
         console.log("User Authorited as: "+data);
         userConnected.push(data);
