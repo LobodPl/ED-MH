@@ -9,6 +9,7 @@ io.on("connect", (socket)=>{
         userConnected.push(data);
         console.log("Connected users: "+userConnected);
         user = data;
+        socket.emit("Auth-succ","");
         socket.broadcast.emit("Wing-Status",{"name":user,"status" : "Online"})
     })
     socket.on("check-wing",(data)=>{
