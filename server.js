@@ -33,7 +33,7 @@ io.on("connect", (socket) => {
                     }   
                 }
             });
-            socket.on('disconnect', function (socket) {
+            socket.on('disconnect', function () {
                 index = userConnected.indexOf(user);
                 userConnected.splice(index, 1);
                 socket.broadcast.emit("Wing-Status", {
