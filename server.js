@@ -1,7 +1,7 @@
 const io = require('socket.io')(8080);
-console.dateLog= (data)=>{
+console.dateLog = (data)=>{
 var date = new Date();
-console.log("["+String(date.getHours())+":"+String(date.getMinutes())+":"+String(date.getSeconds())+"] "+ data)
+console.log("["+String(date.getHours()<10 ? 0+String(date.getHours()) : date.getHours() )+":"+String(date.getMinutes()<10 ? 0+String(date.getMinutes()) : date.getMinutes() )+":"+String(date.getSeconds()<10 ? 0+String(date.getSeconds()) : date.getSeconds() )+"] "+ data)
 }
 var userConnected = [];
 setInterval(() => {
@@ -21,15 +21,14 @@ io.on("connect", (socket) => {
                 "status": "Online"
             })
             socket.on("check-wing", (data) => {
-                console.dateLog(data+" requested wing check")
-                var wingOnline = [];
+                console.dateLog(user+" requested wing check");
+                data=JSON.parse(data);
                 for (var i = 0; i < data.length; i++) {
                     if (userConnected.indexOf(data[i]) != -1) socket.broadcast.emit("Wing-Status", {
                         "name": data[i],
                         "status": "Online"
                     });
                 }
-                socket.emit("Wing-Online", wingOnline)
             });
             socket.on('disconnect', function () {
                 index = userConnected.indexOf(user);
