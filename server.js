@@ -1,14 +1,18 @@
 const io = require('socket.io')(8080);
+console.dateLog= (data)=>{
+var date = new Date();
+console.log("["+String(date.getHours())+":"+String(date.getMinutes())+":"+String(date.getSeconds())+"] "+ data)
+}
 var userConnected = [];
 setInterval(() => {
-    console.log("Connected users: " + userConnected);
+    console.dateLog("Connected users: " + userConnected);
 }, 1000 * 60);
 io.on("connect", (socket) => {
     var user = "";
     socket.emit("Auth", "");
     socket.on("Auth-r", (data, err) => {
         if (userConnected.indexOf(data) == -1) {
-            console.log("User connected: " + data);
+            console.dateLog("User connected: " + data);
             userConnected.push(data);
             user = data;
             socket.emit("Auth-succ", "");
@@ -33,11 +37,11 @@ io.on("connect", (socket) => {
                     "name": user,
                     "status": "Offline"
                 })
-                console.log("Client disconnected: " + user);
+                console.dateLog("Client disconnected: " + user);
             });
             socket.on("Wing-Mission-prop", (data) => {
-                console.log("/============[" + user + "]============\\");
-                console.log(data);
+                console.dateLog("/============[" + user + "]============\\");
+                console.dateLog(data);
                 socket.broadcast.emit("Wing-Mission", data);
             });
         }else{
