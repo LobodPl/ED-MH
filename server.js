@@ -1,5 +1,8 @@
 const io = require('socket.io')(8080);
   var userConnected = [];
+  setInterval(()=>{
+    console.log("Connected users: "+userConnected);
+  },1000*60);
 io.on("connect", (socket)=>{
     var user = "";
     console.log("Client connected");
@@ -7,7 +10,6 @@ io.on("connect", (socket)=>{
     socket.on("Auth-r",(data,err)=>{
         console.log("User Authorited as: "+data);
         userConnected.push(data);
-        console.log("Connected users: "+userConnected);
         user = data;
         socket.emit("Auth-succ","");
         socket.broadcast.emit("Wing-Status",{"name":user,"status" : "Online"})
