@@ -26,7 +26,8 @@ io.on("connect", (socket)=>{
         console.log("Client disconnected: "+user);
     });
     socket.on("Wing-Mission-prop",(data)=>{
-        console.log(data)
+        console.log("/============["+user+"]============\\");
+        console.log(data);
         socket.broadcast.emit("Wing-Mission",data);
     });
 })
