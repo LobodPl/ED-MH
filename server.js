@@ -54,7 +54,7 @@ io.on("connect", (socket) => {
         }else{
            setTimeout(() => {
             socket.emit("Auth", "");
-           }, 5000); 
+           }, 2000); 
         }
     })
 })
