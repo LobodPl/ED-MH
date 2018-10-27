@@ -24,6 +24,7 @@ io.on("connect", (socket) => {
                 console.dateLog(user+" requested wing check");
                 data=JSON.parse(data);
                 for (var i = 0; i < data.length; i++) {
+                    console.log("Checking:"+data[i]+": "+ userConnected.indexOf(data[i]))
                     if (userConnected.indexOf(data[i]) != -1) socket.broadcast.emit("Wing-Status", {
                         "name": data[i],
                         "status": "Online"
