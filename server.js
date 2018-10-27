@@ -25,10 +25,12 @@ io.on("connect", (socket) => {
                 data=JSON.parse(data);
                 for (var i = 0; i < data.length; i++) {
                     console.log("Checking:"+data[i]+": "+ userConnected.indexOf(data[i]))
-                    if (userConnected.indexOf(data[i]) != -1) socket.broadcast.emit("Wing-Status", {
-                        "name": data[i],
-                        "status": "Online"
-                    });
+                    if (userConnected.indexOf(data[i]) >= 0){
+                        socket.broadcast.emit("Wing-Status", {
+                            "name": data[i],
+                            "status": "Online"
+                        });
+                    }   
                 }
             });
             socket.on('disconnect', function () {
