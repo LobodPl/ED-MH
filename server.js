@@ -5,7 +5,7 @@ console.log("["+String(date.getHours())+":"+String(date.getMinutes())+":"+String
 }
 var userConnected = [];
 setInterval(() => {
-    console.dateLog("Connected users: " + userConnected);
+    if(userConnected.length>0) console.dateLog("Connected users: " + userConnected);
 }, 1000 * 60);
 io.on("connect", (socket) => {
     var user = "";
@@ -21,6 +21,7 @@ io.on("connect", (socket) => {
                 "status": "Online"
             })
             socket.on("check-wing", (data) => {
+                console.dateLog(data+" requested wing check")
                 var wingOnline = [];
                 for (var i = 0; i < data.length; i++) {
                     if (userConnected.indexOf(data[i]) != -1) socket.broadcast.emit("Wing-Status", {
@@ -41,7 +42,7 @@ io.on("connect", (socket) => {
             });
             socket.on("Wing-Mission-prop", (data) => {
                 console.dateLog("/============[" + user + "]============\\");
-                console.dateLog(data);
+                console.log(data);
                 socket.broadcast.emit("Wing-Mission", data);
             });
         }else{
