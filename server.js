@@ -1,7 +1,7 @@
 const io = require('socket.io')(8080);
 console.dateLog = (data)=>{
 var date = new Date();
-console.log("["+String(date.getHours()<10 ? 0+String(date.getHours()) : date.getHours() )+":"+String(date.getMinutes()<10 ? 0+String(date.getMinutes()) : date.getMinutes() )+":"+String(date.getSeconds()<10 ? 0+String(date.getSeconds()) : date.getSeconds() )+"] "+ data)
+console.log("["+date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear()+" "+String(date.getHours()<10 ? 0+String(date.getHours()) : date.getHours() )+":"+String(date.getMinutes()<10 ? 0+String(date.getMinutes()) : date.getMinutes() )+":"+String(date.getSeconds()<10 ? 0+String(date.getSeconds()) : date.getSeconds() )+"] "+ data)
 }
 var userConnected = [];
 setInterval(() => {
@@ -58,3 +58,4 @@ io.on("connect", (socket) => {
         }
     })
 })
+console.dateLog("Startup Complate!")
