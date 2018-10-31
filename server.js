@@ -1,4 +1,4 @@
-const io = require('socket.io')();
+const io = require('socket.io')(process.env.PORT);
 console.dateLog = (data)=>{
 var date = new Date();
 console.log("["+date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear()+" "+String(date.getHours()<10 ? 0+String(date.getHours()) : date.getHours() )+":"+String(date.getMinutes()<10 ? 0+String(date.getMinutes()) : date.getMinutes() )+":"+String(date.getSeconds()<10 ? 0+String(date.getSeconds()) : date.getSeconds() )+"] "+ data)
@@ -58,4 +58,4 @@ io.on("connect", (socket) => {
         }
     })
 })
-console.dateLog("Startup Complate!")
+console.dateLog("Startup Complate!("+process.env.PORT+")")
