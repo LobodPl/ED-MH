@@ -51,6 +51,9 @@ io.on("connect", (socket) => {
                 console.log(data);
                 socket.broadcast.emit("Wing-Mission", data);
             });
+            socket.on("Mission-Abandoned",(data)=>{
+                socket.broadcast.emit("Wing-Mission-Abandoned",data);
+            });
         }else{
            setTimeout(() => {
             socket.emit("Auth", "");
