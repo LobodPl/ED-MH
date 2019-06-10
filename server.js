@@ -31,7 +31,7 @@ io.on("connect", (socket) => {
             socket.on('disconnect', function () {
                 index = userConnected.indexOf(user);
                 userConnected.splice(index, 1);
-                socket.broadcast.emit("Wing-Status", "{\"name\": \""+user+"\",\"status\": \"Online\"}")
+                socket.broadcast.emit("Wing-Status", "{\"name\": \""+user+"\",\"status\": \"Offline\"}")
                 console.dateLog("Client disconnected: " + user);
             });
             socket.on("Wing-Mission-prop", (data) => {
