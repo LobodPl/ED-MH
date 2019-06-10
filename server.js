@@ -40,6 +40,8 @@ io.on("connect", (socket) => {
                 socket.broadcast.emit("Wing-Mission", data);
             });
             socket.on("Mission-Abandoned",(data)=>{
+                console.dateLog("/============[" + user + "]============\\");
+                console.log(data);
                 socket.broadcast.emit("Wing-Mission-Abandoned",data);
             });
         }else{
