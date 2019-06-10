@@ -16,34 +16,22 @@ io.on("connect", (socket) => {
             userConnected.push(data);
             user = data;
             socket.emit("Auth-succ", "");
-            socket.broadcast.emit("Wing-Status", `{
-                "name": ${user},
-                "status": "Online"
-            }`);
+            socket.broadcast.emit("Wing-Status", "{\"name\": \""+user+"\",\"status\": \"Online\"}");
             socket.on("check-wing", (data) => {
                 console.dateLog(user+" requested wing check");
                 data=JSON.parse(data);
                 for (var i = 0; i < data.length; i++) {
                     if (userConnected.indexOf(data[i]) >= 0){
-                        socket.emit("Wing-Status", `{
-                            "name": ${data[i]},
-                            "status": "Online"
-                        }`);
+                        socket.emit("Wing-Status", "{\"name\": \""+data[i]+"\",\"status\": \"Online\"}");
                     }else{
-                        socket.emit("Wing-Status", `{
-                            "name": ${data[i]},
-                            "status": "Offline"
-                        }`);
+                        socket.emit("Wing-Status", "{\"name\": \""+data[i]+"\",\"status\": \"Offline\"}");
                     }  
                 }
             });
             socket.on('disconnect', function () {
                 index = userConnected.indexOf(user);
                 userConnected.splice(index, 1);
-                socket.broadcast.emit("Wing-Status", {
-                    "name": user,
-                    "status": "Offline"
-                })
+                socket.broadcast.emit("Wing-Status", "{\"name\": \""+user+"\",\"status\": \"Online\"}")
                 console.dateLog("Client disconnected: " + user);
             });
             socket.on("Wing-Mission-prop", (data) => {
