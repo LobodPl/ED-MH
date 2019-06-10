@@ -25,15 +25,15 @@ io.on("connect", (socket) => {
                 data=JSON.parse(data);
                 for (var i = 0; i < data.length; i++) {
                     if (userConnected.indexOf(data[i]) >= 0){
-                        socket.emit("Wing-Status", {
-                            "name": data[i],
+                        socket.emit("Wing-Status", `{
+                            "name": ${data[i]},
                             "status": "Online"
-                        });
+                        }`);
                     }else{
-                        socket.emit("Wing-Status", {
-                            "name": data[i],
+                        socket.emit("Wing-Status", `{
+                            "name": ${data[i]},
                             "status": "Offline"
-                        });
+                        }`);
                     }  
                 }
             });
