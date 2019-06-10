@@ -16,10 +16,10 @@ io.on("connect", (socket) => {
             userConnected.push(data);
             user = data;
             socket.emit("Auth-succ", "");
-            socket.broadcast.emit("Wing-Status", {
-                "name": user,
+            socket.broadcast.emit("Wing-Status", `{
+                "name": ${user},
                 "status": "Online"
-            });
+            }`);
             socket.on("check-wing", (data) => {
                 console.dateLog(user+" requested wing check");
                 data=JSON.parse(data);
